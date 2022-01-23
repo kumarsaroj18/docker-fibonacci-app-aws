@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - mainline
+env:
+  SECRETS: ${{ toJSON(secrets) }}
 
 jobs:
   build-react:
@@ -13,9 +15,8 @@ jobs:
       tag: v1
       docker_repo_name: fobonacci_calculator
       module_name: client
-      secrets:
-        registry_username: ${{ secrets.DOCKER_USERNAME }}
-        registry_password: ${{ secrets.DOCKER_PASSWORD }}
+      registry_username: ${{ secrets.DOCKER_USERNAME }}
+      registry_password: ${{ secrets.DOCKER_PASSWORD }}
 
   build-nginx:
     uses: saroj-dev-ops/docker-fibonacci-app-aws/.github/workflows/test-and-publish-services-template-workflow.yml@mainline
@@ -24,9 +25,8 @@ jobs:
       tag: v1
       docker_repo_name: fobonacci_calculator
       module_name: nginx
-      secrets:
-        registry_username: ${{ secrets.DOCKER_USERNAME }}
-        registry_password: ${{ secrets.DOCKER_PASSWORD }}
+      registry_username: ${{ secrets.DOCKER_USERNAME }}
+      registry_password: ${{ secrets.DOCKER_PASSWORD }}
 
   build-server:
     uses: saroj-dev-ops/docker-fibonacci-app-aws/.github/workflows/test-and-publish-services-template-workflow.yml@mainline
@@ -35,9 +35,8 @@ jobs:
       tag: v1
       docker_repo_name: fobonacci_calculator
       module_name: server
-      secrets:
-        registry_username: ${{ secrets.DOCKER_USERNAME }}
-        registry_password: ${{ secrets.DOCKER_PASSWORD }}
+      registry_username: ${{ secrets.DOCKER_USERNAME }}
+      registry_password: ${{ secrets.DOCKER_PASSWORD }}
 
   build-worker:
     uses: saroj-dev-ops/docker-fibonacci-app-aws/.github/workflows/test-and-publish-services-template-workflow.yml@mainline
@@ -46,6 +45,5 @@ jobs:
       tag: v1
       docker_repo_name: fobonacci_calculator
       module_name: worker
-      secrets:
-        registry_username: ${{ secrets.DOCKER_USERNAME }}
-        registry_password: ${{ secrets.DOCKER_PASSWORD }}
+      registry_username: ${{ secrets.DOCKER_USERNAME }}
+      registry_password: ${{ secrets.DOCKER_PASSWORD }}
