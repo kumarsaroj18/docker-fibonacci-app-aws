@@ -12,13 +12,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build the Docker image
-        run: docker build . --file ./worker/Dockerfile.dev --tag fobonacci_calculator_worker:v2
+        run: docker build --tag fobonacci_calculator_worker:v1 --file ./worker/Dockerfile.dev worker
       - name: Docker build and push
         uses: mr-smithers-excellent/docker-build-push@v5
         with:
-          image: kumarsaroj18/learning-github-actions
-          tags: v2, latest
-          dockerfile: ./worker/Dockerfile
+          image: kumarsaroj18/fibonacci_calculator
+          tags: v1
+          dockerfile: worker/Dockerfile
+          directory: worker
           registry: docker.io
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
