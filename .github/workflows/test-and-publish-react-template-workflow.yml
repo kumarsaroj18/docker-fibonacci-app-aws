@@ -33,7 +33,7 @@ jobs:
       - name: Build the Docker image
         run: docker build --tag fobonacci_calculator_${{inputs.module_name}}:${{inputs.tag}} --file ${{inputs.module_name}}/Dockerfile.dev ${{inputs.module_name}}
       - name: Run the test cases on Docker image
-        run: docker run -e CI=true fobonacci_calculator_${{inputs.module_name}}:${{inputs.module_name}} npm run test
+        run: docker run -e CI=true fobonacci_calculator_${{inputs.module_name}}:${{inputs.tag}} npm run test
       - name: Docker build and push
         uses: mr-smithers-excellent/docker-build-push@v5
         with:
