@@ -1,0 +1,51 @@
+name: Create and Publish Docker Image
+
+on:
+  push:
+    branches:
+      - mainline
+
+jobs:
+  build-react:
+    uses: saroj-dev-ops/docker-fibonacci-app-aws/.github/workflows/test-and-publish-react-template-workflow.yml@mainline
+    with:
+      image_name: fobonacci_calculator
+      tag: v1
+      docker_repo_name: fobonacci_calculator
+      module_name: client
+    secrets:
+      registry_username: ${{ secrets.DOCKER_USERNAME }}
+      registry_password: ${{ secrets.DOCKER_PASSWORD }}
+
+  build-nginx:
+    uses: saroj-dev-ops/docker-fibonacci-app-aws/.github/workflows/test-and-publish-services-template-workflow.yml@mainline
+    with:
+      image_name: fobonacci_calculator
+      tag: v1
+      docker_repo_name: fobonacci_calculator
+      module_name: nginx
+    secrets:
+      registry_username: ${{ secrets.DOCKER_USERNAME }}
+      registry_password: ${{ secrets.DOCKER_PASSWORD }}
+
+  build-server:
+    uses: saroj-dev-ops/docker-fibonacci-app-aws/.github/workflows/test-and-publish-services-template-workflow.yml@mainline
+    with:
+      image_name: fobonacci_calculator
+      tag: v1
+      docker_repo_name: fobonacci_calculator
+      module_name: server
+    secrets:
+      registry_username: ${{ secrets.DOCKER_USERNAME }}
+      registry_password: ${{ secrets.DOCKER_PASSWORD }}
+
+  build-worker:
+    uses: saroj-dev-ops/docker-fibonacci-app-aws/.github/workflows/test-and-publish-services-template-workflow.yml@mainline
+    with:
+      image_name: fobonacci_calculator
+      tag: v1
+      docker_repo_name: fobonacci_calculator
+      module_name: worker
+    secrets:
+      registry_username: ${{ secrets.DOCKER_USERNAME }}
+      registry_password: ${{ secrets.DOCKER_PASSWORD }}

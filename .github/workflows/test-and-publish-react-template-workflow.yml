@@ -1,0 +1,48 @@
+name: Create and Publish React App Docker Image
+
+on:
+  workflow_call:
+    inputs:
+      image_name:
+        required: true
+        type: string
+      tag:
+        required: false
+        type: string
+        default: "latest"
+      docker_repo_name:
+        required: true
+        type: string
+      module_name:
+        required: true
+        type: string
+    secrets:
+      registry_username:
+        required: true
+        description: User name to login into Docker registry
+      registry_password:
+        required: true
+        description: Password to login into Docker registry
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: check secrets
+        run: echo "hello world"
+      - uses: actions/checkout@v2
+      - name: Build the Docker image
+        run: docker build --tag fobonacci_calculator_${{inputs.module_name}}:${{inputs.tag}} --file ${{inputs.module_name}}/Dockerfile.dev ${{inputs.module_name}}
+      - name: Run the test cases on Docker image
+        run: docker run -e CI=true fobonacci_calculator_${{inputs.module_name}}:${{inputs.tag}} npm run test
+      - name: Docker build and push
+        uses: mr-smithers-excellent/docker-build-push@v5
+        with:
+          image: kumarsaroj18/${{inputs.docker_repo_name}}_${{inputs.module_name}}
+          tags: ${{inputs.tag}}
+          dockerfile: ${{inputs.module_name}}/Dockerfile
+          directory: ${{inputs.module_name}}
+          registry: docker.io
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
