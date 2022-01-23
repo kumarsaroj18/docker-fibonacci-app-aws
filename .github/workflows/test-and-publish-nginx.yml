@@ -1,0 +1,24 @@
+name: test_and_publish_nginx
+
+on:
+  push:
+    branches:
+      - mainline
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build the Docker image
+        run: docker build . --file ./nginx/Dockerfile.dev --tag fobonacci_calculator_nginx:v1
+      - name : Docker build and push
+        uses: mr-smithers-excellent/docker-build-push@v5
+        with:
+          image: kumarsaroj18/learning-github-actions
+          tags: v2, latest
+          dockerfile: ./nginx/Dockerfile
+          registry: docker.io
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}

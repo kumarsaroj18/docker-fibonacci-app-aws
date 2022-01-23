@@ -1,0 +1,26 @@
+name: test_and_publish_client
+
+on:
+  push:
+    branches:
+      - mainline
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build the Docker image
+        run: docker build . --file ./client/Dockerfile.dev --tag fobonacci_calculator_client:v1
+      - name: Run the test cases on Docker image
+        run: docker run -e CI=true react:v2 npm run test
+      - name: Docker build and push
+        uses: mr-smithers-excellent/docker-build-push@v5
+        with:
+          image: kumarsaroj18/learning-github-actions
+          tags: v2, latest
+          dockerfile: ./client/Dockerfile
+          registry: docker.io
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
