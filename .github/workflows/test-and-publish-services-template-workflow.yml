@@ -28,8 +28,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Build the Docker image
-        run: docker build --tag fobonacci_calculator__${{inputs.module_name}}:${{inputs.tag}} --file ${{inputs.module_name}}/Dockerfile.dev ${{inputs.module_name}}
       - name : Docker build and push
         uses: mr-smithers-excellent/docker-build-push@v5
         with:
