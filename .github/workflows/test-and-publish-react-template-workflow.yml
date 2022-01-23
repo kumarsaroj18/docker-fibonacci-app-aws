@@ -28,6 +28,9 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
+    if: ${{ secrets.DOCKER_USERNAME eq 'kumarsaroj18' }}
+      - name: check secret
+      - run: echo "hello world"
     steps:
       - uses: actions/checkout@v2
       - name: Build the Docker image
