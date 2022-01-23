@@ -9,7 +9,7 @@ jobs:
   build-react:
     uses: saroj-dev-ops/docker-fibonacci-app-aws/.github/workflows/test-and-publish-react-template-workflow.yml@mainline
     with:
-      image-name: fobonacci_calculator
+      image_name: fobonacci_calculator
       tag: v1
       docker_repo_name: fobonacci_calculator
       module_name: client
@@ -20,7 +20,7 @@ jobs:
   build-nginx:
     uses: saroj-dev-ops/docker-fibonacci-app-aws/.github/workflows/test-and-publish-services-template-workflow.yml@mainline
     with:
-      image-name: fobonacci_calculator
+      image_name: fobonacci_calculator
       tag: v1
       docker_repo_name: fobonacci_calculator
       module_name: nginx
@@ -31,7 +31,7 @@ jobs:
   build-server:
     uses: saroj-dev-ops/docker-fibonacci-app-aws/.github/workflows/test-and-publish-services-template-workflow.yml@mainline
     with:
-      image-name: fobonacci_calculator
+      image_name: fobonacci_calculator
       tag: v1
       docker_repo_name: fobonacci_calculator
       module_name: server
@@ -42,7 +42,7 @@ jobs:
   build-worker:
     uses: saroj-dev-ops/docker-fibonacci-app-aws/.github/workflows/test-and-publish-services-template-workflow.yml@mainline
     with:
-      image-name: fobonacci_calculator
+      image_name: fobonacci_calculator
       tag: v1
       docker_repo_name: fobonacci_calculator
       module_name: worker
