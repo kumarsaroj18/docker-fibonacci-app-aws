@@ -16,7 +16,7 @@ jobs:
       - name: Docker build and push
         uses: mr-smithers-excellent/docker-build-push@v5
         with:
-          image: kumarsaroj18/fibonacci_calculator
+          image: kumarsaroj18/fobonacci_calculator_worker
           tags: v1
           dockerfile: worker/Dockerfile
           directory: worker
