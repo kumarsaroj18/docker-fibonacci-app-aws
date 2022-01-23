@@ -13,6 +13,7 @@ jobs:
       tag: v1
       docker_repo_name: fobonacci_calculator
       module_name: client
+    secrets:
       registry_username: ${{ secrets.DOCKER_USERNAME }}
       registry_password: ${{ secrets.DOCKER_PASSWORD }}
 
@@ -23,6 +24,7 @@ jobs:
       tag: v1
       docker_repo_name: fobonacci_calculator
       module_name: nginx
+    secrets:
       registry_username: ${{ secrets.DOCKER_USERNAME }}
       registry_password: ${{ secrets.DOCKER_PASSWORD }}
 
@@ -33,6 +35,7 @@ jobs:
       tag: v1
       docker_repo_name: fobonacci_calculator
       module_name: server
+    secrets:
       registry_username: ${{ secrets.DOCKER_USERNAME }}
       registry_password: ${{ secrets.DOCKER_PASSWORD }}
 
@@ -43,5 +46,6 @@ jobs:
       tag: v1
       docker_repo_name: fobonacci_calculator
       module_name: worker
+    secrets:
       registry_username: ${{ secrets.DOCKER_USERNAME }}
       registry_password: ${{ secrets.DOCKER_PASSWORD }}
