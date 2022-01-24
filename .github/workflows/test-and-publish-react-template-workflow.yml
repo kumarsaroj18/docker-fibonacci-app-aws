@@ -44,5 +44,5 @@ jobs:
           dockerfile: ${{inputs.module_name}}/Dockerfile
           directory: ${{inputs.module_name}}
           registry: docker.io
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
+          username: ${{ secrets.registry_username }}
+          password: ${{ secrets.registry_password }}
