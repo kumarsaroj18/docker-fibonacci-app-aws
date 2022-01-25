@@ -1,9 +1,13 @@
 version: '3'
 services:
-  postgres:
-    image: 'postgres:latest'
+  mysql:
+    image: 'mysql:5.7'
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
     environment:
-      - POSTGRES_PASSWORD=postgres_password
+      MYSQL_ROOT_PASSWORD: kkk_123
+      MYSQL_USER: dev
+      MYSQL_PASSWORD: kkk_123
   redis:
     image: 'redis:latest'
   nginx:
@@ -21,18 +25,18 @@ services:
       dockerfile: Dockerfile.dev
       context: ./server
     depends_on:
-      - postgres
+      - mysql
     volumes:
       - /app/node_modules
       - ./server:/app
     environment:
       - REDIS_HOST=redis
       - REDIS_PORT=6379
-      - PGUSER=postgres
-      - PGHOST=postgres
-      - PGDATABASE=postgres
-      - PGPASSWORD=postgres_password
-      - PGPORT=5432
+      - MYSQL_HOST=msyql
+      - MYSQL_PORT=3306
+      - MYSQL_USER=dev
+      - MYSQL_PASSWORD=kkk_123
+      - MYSQL_DATABASE=fibonacci
   client:
     build:
       dockerfile: Dockerfile.dev
