@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - mainline
-
+  workflow_dispatch:
 jobs:
   build-react:
     uses: saroj-dev-ops/docker-fibonacci-app-aws/.github/workflows/test-and-publish-react-template-workflow.yml@mainline
